@@ -113,7 +113,8 @@ HI_S32 SAMPLE_VENC_1080P_CLASSIC(HI_VOID)
     }
     else
     {
-        s32ChnNum = 3;
+        s32ChnNum = 2;
+        SAMPLE_PRT("SENSOR_TYPE=%d,s32ChnNum=%d\n",SENSOR_TYPE,s32ChnNum);
     }
 
     /******************************************
@@ -146,11 +147,12 @@ HI_S32 SAMPLE_VENC_1080P_CLASSIC(HI_VOID)
     stVbConf.astCommPool[1].u32BlkSize = u32BlkSize;
     stVbConf.astCommPool[1].u32BlkCnt = 20;
 
+#if 0
     u32BlkSize = SAMPLE_COMM_SYS_CalcPicVbBlkSize(gs_enNorm, \
                  enSize[2], SAMPLE_PIXEL_FORMAT, SAMPLE_SYS_ALIGN_WIDTH);
     stVbConf.astCommPool[2].u32BlkSize = u32BlkSize;
     stVbConf.astCommPool[2].u32BlkCnt = 20;
-
+#endif
 
     /******************************************
      step 2: mpp system init.
@@ -308,7 +310,7 @@ HI_S32 SAMPLE_VENC_1080P_CLASSIC(HI_VOID)
         SAMPLE_PRT("Start Venc failed!\n");
         goto END_VENC_1080P_CLASSIC_5;
     }
-
+#if 0
     /*** D1 **/
     if (SONY_IMX178_LVDS_5M_30FPS != SENSOR_TYPE)
     {
@@ -329,6 +331,7 @@ HI_S32 SAMPLE_VENC_1080P_CLASSIC(HI_VOID)
             goto END_VENC_1080P_CLASSIC_5;
         }
     }
+#endif
     /******************************************
      step 6: stream venc process -- get stream, then save it to file.
     ******************************************/

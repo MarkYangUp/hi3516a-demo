@@ -1071,7 +1071,7 @@ HI_VOID* SAMPLE_COMM_VENC_GetVencStreamProc(HI_VOID* p)
                        stVencChnAttr.stVeAttr.enType, s32Ret);
             return NULL;
         }
-        snprintf(aszFileName[i], FILE_NAME_LEN, "stream_chn%d%s", i, szFilePostfix);
+        snprintf(aszFileName[i], FILE_NAME_LEN, "/mnt/sd/rec/stream_chn%d%s", i, szFilePostfix);
         pFile[i] = fopen(aszFileName[i], "wb");
         if (!pFile[i])
         {
@@ -1183,6 +1183,8 @@ HI_VOID* SAMPLE_COMM_VENC_GetVencStreamProc(HI_VOID* p)
                         SAMPLE_PRT("save stream failed!\n");
                         break;
                     }
+                    SAMPLE_PRT("Enc-type=[%s], SeqNo=[%d],frame_lenght=[%d]\n",(enPayLoadType[i]==PT_H265?"h265":"h264"), \
+                       stStream.u32Seq, stStream.pstPack->u32Len);
                     /*******************************************************
                      step 2.6 : release stream
                     *******************************************************/
